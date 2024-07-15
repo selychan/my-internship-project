@@ -1,7 +1,7 @@
 rules:
   - id: xss-detection
     patterns:
-      - pattern: request.args[...] # Örnek kural
+      - pattern: request.args[...]
     message: "Potential XSS vulnerability detected."
     severity: WARNING
     languages:
@@ -9,7 +9,7 @@ rules:
     metadata:
       category: security
       technology: flask
-rules:
+
   - id: sql-injection-detection
     patterns:
       - pattern: |
@@ -27,3 +27,4 @@ rules:
     metadata:
       category: security
       technology: flask
+
