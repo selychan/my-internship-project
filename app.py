@@ -1,4 +1,4 @@
-from flask import Flask, request, render_template
+from flask import Flask, request, render_template, render_template_string
 import sqlite3
 
 app = Flask(__name__)
@@ -21,6 +21,11 @@ def search():
     results = cursor.fetchall()
     conn.close()
     return str(results)
+
+@app.route('/xss')
+def xss():
+    user_input = request.args.get('input', '')
+    return render_template_string(f'<h1>{user_input}</h1>')
 
 
 if __name__ == '__main__':
