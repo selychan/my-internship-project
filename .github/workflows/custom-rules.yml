@@ -1,0 +1,29 @@
+rules:
+  - id: xss-detection
+    patterns:
+      - pattern: request.args[...] # Örnek kural
+    message: "Potential XSS vulnerability detected."
+    severity: WARNING
+    languages:
+      - python
+    metadata:
+      category: security
+      technology: flask
+rules:
+  - id: sql-injection-detection
+    patterns:
+      - pattern: |
+          cursor.execute("SELECT ... FROM ... WHERE ...")
+      - pattern: |
+          cursor.execute(f"SELECT ... FROM ... WHERE ...")
+      - pattern: |
+          db.session.execute("SELECT ... FROM ... WHERE ...")
+      - pattern: |
+          db.session.execute(f"SELECT ... FROM ... WHERE ...")
+    message: "Potential SQL Injection vulnerability detected."
+    severity: ERROR
+    languages:
+      - python
+    metadata:
+      category: security
+      technology: flask
