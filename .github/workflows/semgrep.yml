@@ -1,24 +1,32 @@
+name: Semgrep
+
 on:
   workflow_dispatch: {}
-  pull_request: {}
+  pull_request:
+    branches:
+      - '**' # run for all branches
   push:
     branches:
-    - main
-    - master
+      - main
+      - master
     paths:
-    - .github/workflows/semgrep.yml
+      - .github/workflows/semgrep.yml
+      - '**/*.py' # run for change the python folder
   schedule:
-  # random HH:MM to avoid a load spike on GitHub Actions at 00:00
-  - cron: 40 2 * * *
-name: Semgrep
+    - cron: '40 2 * * *'
+
 jobs:
   semgrep:
-    name: semgrep/ci
+    name: Run Semgrep
     runs-on: ubuntu-20.04
     env:
       SEMGREP_APP_TOKEN: ${{ secrets.SEMGREP_APP_TOKEN }}
     container:
       image: returntocorp/semgrep
     steps:
-    - uses: actions/checkout@v3
-    - run: semgrep ci
+      - name: Checkout repository
+        uses: actions/checkout@v3
+
+      - name: Run Semgrep
+        run: semgrep ci --config p/security-audit
+
