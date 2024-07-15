@@ -76,5 +76,12 @@
             {% endif %}
         </div>
     </div>
+    <script>
+        // XSS vulnerability: username is injected into JavaScript context
+        var username = "{{ username }}";
+        if (username) {
+            document.getElementById("greeting").innerHTML = "Hello, " + username + "!";
+        }
+    </script>
 </body>
 </html>
