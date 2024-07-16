@@ -21,6 +21,12 @@ def search():
     results = cursor.fetchall()
     conn.close()
     return str(results)
+    
+@app.route("/route_param_format/<route_param>")
+def route_param_format(route_param):
+    print("blah")
+    # ruleid:raw-html-format
+    return "<a href='{}'>Click me!</a>".format(route_param)
 
 
 if __name__ == '__main__':
