@@ -12,10 +12,7 @@ rules:
       instead.
     metadata:
       cwe:
-        - "CWE-79: Improper Neutralization of Input During Web Page Generation
-
-
-      owasp:
+        - "CWE-79: Improper Neutralization of Input During Web Page Generation"
         - A07:2017 - Cross-Site Scripting (XSS)
         - A03:2021 - Injection
       category: security
