@@ -21,6 +21,12 @@ def search():
     results = cursor.fetchall()
     conn.close()
     return str(results)
+    
+@app.route('/vulnerable')
+def vulnerable_view():
+    user_input = request.args.get('user_input', '')
+    response_html = f"<html><body>User input: {user_input}</body></html>"
+    return response_html
 
 
 if __name__ == '__main__':
