@@ -28,7 +28,17 @@ def vulnerable_view():
     response_html = f"<html><body>User input: {user_input}</body></html>"
     return response_html
     
-
+@app.route("/loginpage")
+def render_login_page(thing):
+    # ruleid:directly-returned-format-string
+    return '''
+<p>{}</p>
+<form method="POST" style="margin: 60px auto; width: 140px;">
+    <p><input name="username" type="text" /></p>
+    <p><input name="password" type="password" /></p>
+    <p><input value="Login" type="submit" /></p>
+</form>
+    '''.format(thing)
 
 
 if __name__ == '__main__':
