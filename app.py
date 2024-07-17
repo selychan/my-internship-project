@@ -21,6 +21,13 @@ def search():
     results = cursor.fetchall()
     conn.close()
     return str(results)
+    
+@app.route("/really_unsafe")
+def really_unsafe():
+    name = request.args.get("name")
+    age = request.args.get("age")
+    # ruleid: unescaped-template-extension
+    return render_template("unsafe.txt", name=name, age=age)
 
 
 if __name__ == '__main__':
