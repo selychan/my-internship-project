@@ -1,0 +1,26 @@
+rules:
+  - id: python-xss
+    patterns:
+      - pattern: |
+          def $FUNC(...):
+              ...
+              $HTML_VAR = $REQUEST_VAR
+              ...
+              return $HTML_VAR
+    message: "Possible XSS vulnerability"
+    languages:
+      - python
+    severity: WARNING
+    metadata:
+      category: security
+      confidence: HIGH
+      likelihood: HIGH
+      impact: HIGH
+      cwe:
+        - "CWE 79:"
+      subcategory:
+        - vuln
+      technology:
+        - flask
+      references:
+        - https://example.com
